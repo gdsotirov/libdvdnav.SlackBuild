@@ -19,13 +19,13 @@
 #
 # Visit SlackPack at http://sotirov-bg.net/slackpack/
 #
-# $Id: libdvdnav.SlackBuild,v 1.3 2016/08/23 17:18:17 gsotirov Exp $
+# $Id: libdvdnav.SlackBuild,v 1.4 2016/08/23 18:58:37 gsotirov Exp $
 #
 
 . ../../slack-package.conf
 
 NAME=libdvdnav
-VERSION=0.1.10
+VERSION=4.1.3
 ARCH=${ARCH:-i486}
 BUILD=${BUILD:-1}
 
@@ -55,11 +55,8 @@ tar -xvf $CWD/$NAME-$VERSION.tar.?z* || exit 3
 cd $SRC
 fix_source
 
-# Apply debian patch to fix building
-# See http://packages.debian.org/etch/libdvdnav4
-patch -p1 < $CWD/$NAME-$VERSION.diff || exit 4
-
 # Configure
+./autogen.sh || exit 40
 CFLAGS=$SLKCFLAGS \
 CXXFLAGS=$SLKCFLAGS \
 ./configure --build=$ARCH-slackware-linux \
@@ -87,7 +84,6 @@ SBDIR=$PKG/usr/src/slackbuilds/$NAME-$VERSION
 install -m 755 -d $SBDIR
 install -m 644 $CWD/slack-desc          $SBDIR/slack-desc
 install -m 644 $CWD/slack-required      $SBDIR/slack-required
-install -m 644 $CWD/$NAME-$VERSION.diff $SBDIR/$NAME-$VERSION.diff
 install -m 644 $CWD/$NAME.SlackBuild    $SBDIR/$NAME.SlackBuild
 
 # Assemble
