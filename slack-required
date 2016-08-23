@@ -1,2 +1,2 @@
-glibc-solibs >= 2.13
-libdvdread >= 4.1.3
+glibc-solibs >= 2.15
+libdvdread >= 4.2.1
