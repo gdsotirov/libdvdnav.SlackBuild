@@ -5,12 +5,12 @@
 # Visit SlackPack at http://sotirov-bg.net/slackpack/
 #
 
-. /etc/slack-package.conf
+. ../../slack-package.conf
 
 NAME=libdvdnav
 VERSION=0.1.10
-BUILD=1
 ARCH=${ARCH:-i486}
+BUILD=${BUILD:-1}
 
 CWD=${CWD:-`pwd`}
 TMP=${TMP:-/tmp}
@@ -47,6 +47,7 @@ CXXFLAGS=$SLKCFLAGS \
 ./configure --build=$ARCH-slackware-linux \
             --host=$ARCH-slackware-linux \
             --prefix=/usr \
+            --libdir=/usr/lib${LIBDIRSUFFIX} \
             --sysconfdir=/etc \
             --enable-shared=yes \
             --enable-static=no || exit 2
