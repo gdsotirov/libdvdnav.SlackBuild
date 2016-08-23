@@ -1,1 +1,2 @@
 glibc-solibs >= 2.9
+libdvdread >= 4.1.3
