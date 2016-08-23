@@ -19,14 +19,14 @@
 #
 # Visit SlackPack at http://sotirov-bg.net/slackpack/
 #
-# $Id: libdvdnav.SlackBuild,v 1.5 2016/08/23 19:13:34 gsotirov Exp $
+# $Id: libdvdnav.SlackBuild,v 1.6 2016/08/23 19:28:47 gsotirov Exp $
 #
 
 . ../../slack-package.conf
 
 NAME=libdvdnav
-VERSION=4.2.1
-ARCH=${ARCH:-i486}
+VERSION=5.0.3
+ARCH=${ARCH:-i586}
 BUILD=${BUILD:-1}
 
 CWD=${CWD:-`pwd`}
@@ -56,7 +56,6 @@ cd $SRC
 fix_source
 
 # Configure
-./autogen.sh || exit 40
 CFLAGS=$SLKCFLAGS \
 CXXFLAGS=$SLKCFLAGS \
 ./configure --build=$ARCH-slackware-linux \
@@ -68,7 +67,7 @@ CXXFLAGS=$SLKCFLAGS \
             --enable-static=no || exit 5
 
 # Build & install
-make -j4 || exit 6
+make V=1 -j || exit 6
 make DESTDIR=$PKG install || exit 7
 
 # Prepare
